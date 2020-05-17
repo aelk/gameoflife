@@ -11,19 +11,17 @@ def random_state(width, height):
     return state
 
 def render(state):
+    border_width = len(state[0]) + 2;
+    print("-" * border_width)
     for row in state:
-        print(row)
-    '''
-    for i in range(len(state)):
-        for j in range(len(state[0])):
-            if state[i][j] == 0:
-                print(" ")
-            else:
-                print("#")
-    '''
+        print('|', end='')
+        for cell in row:
+            print(' ' if cell == 0 else '#', end='')
+        print('|')
+    print("-" * border_width)
 
 if __name__ == '__main__':
-    width, height = 3, 5
+    width, height = 37, 28
     state = random_state(width, height)
     print(state)
     render(state)
