@@ -20,6 +20,10 @@ def render(state):
         print('|')
     print("-" * border_width)
 
+def next_board_state(state):
+    # TODO
+    return state
+
 if __name__ == '__main__':
     width, height = 37, 28
     state = random_state(width, height)
