@@ -68,7 +68,7 @@ class LifeTest(unittest.TestCase):
             [0, 0, 0],
         ]
         expected_state = [
-            [1, 1, 1],
+            [0, 1, 0],
             [0, 1, 0],
             [0, 0, 0],
         ]

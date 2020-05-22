@@ -33,19 +33,29 @@ def count_live_neighbors(state, pos):
 
     return live_neighbors
 
-def next_board_state(state):
-    # count_live_neighbors(state, pos) -> returns 0..8
+def update_cell(cell, neighbors):
+    return (cell == 0 and neighbors == 3) or \
+            (cell == 1 and (neighbors < 2 or neighbors > 3))
 
-    # when a cell changes, append its pos to a list
-    # after you finish checking each cell, go through the list
-    # and toggle each of the positions
-    new_cell_positions = []
+def next_board_state(state):
+    positions_to_update = []
+    for i in range(len(state)):
+        for j in range(len(state[0])):
+            cell = state[i][j]
+            pos = (i, j)
+            live_neighbors = count_live_neighbors(state, pos)
+            if update_cell(cell, live_neighbors):
+                positions_to_update.append(pos)
+
+    for pos in positions_to_update:
+        x, y = pos
+        state[x][y] ^= 1
 
     return state
 
 if __name__ == '__main__':
-    width, height = 3, 2
+    width, height = 13, 7
     state = random_state(width, height)
-    print(state)
-    #render(state)
-    count_live_neighbors(state, (0, 1))
+    for i in range(30):
+        render(state)
+        state = next_board_state(state)
