@@ -1,3 +1,5 @@
+import os
+import time
 from random import randint
 
 def dead_state(width, height):
@@ -54,8 +56,11 @@ def next_board_state(state):
     return state
 
 if __name__ == '__main__':
-    width, height = 13, 7
+    width, height = 63, 70
     state = random_state(width, height)
-    for i in range(30):
+    for i in range(3000):
+        os.system('clear')
         render(state)
+        print("Generation", i)
+        time.sleep(0.3)
         state = next_board_state(state)
