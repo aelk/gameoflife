@@ -55,9 +55,19 @@ def next_board_state(state):
 
     return state
 
+def load_board_state(file_name):
+    state = []
+    with open(file_name, "r") as f:
+        for line in f:
+            cell_strings = list(line[:-1])
+            state.append(list(map(int, cell_strings)))
+    return state
+
 if __name__ == '__main__':
     width, height = 63, 70
-    state = random_state(width, height)
+    #state = random_state(width, height)
+    state = load_board_state("toad.txt")
+    print(state)
     for i in range(3000):
         os.system('clear')
         render(state)
